@@ -31,16 +31,16 @@ ActiveRecord::Schema.define(version: 2021_05_31_215210) do
   end
 
   create_table "movies", force: :cascade do |t|
-    t.string "title"
+    t.text "title"
     t.integer "up_count"
     t.integer "down_count"
-    t.string "query"
+    t.text "query"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "uuid"
+    t.text "uuid"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

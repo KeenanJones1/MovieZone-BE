@@ -12,7 +12,8 @@ class UserSerializer
  def user_movies_serialized_json
    # method to get the last three movies interacted with by user
   @user.to_json(only: [:uuid],
-    include: {likes: { include: {movies: {only: [:title, :up_count, :down_count, :query]}}}, dislikes: {include: {only: [:title, :up_count, :down_count, :query]}}}
+    include: {likes: { include: {movie: {only: [:title, :up_count, :down_count, :query]}}}, dislikes: {include: {movie: {only:[:title, :up_count, :down_count, :query]}}
+    }}
   )
  end
 

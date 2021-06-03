@@ -1,7 +1,7 @@
 class Movie < ApplicationRecord
  has_many :likes
  has_many :dislikes
- 
+
  # before create make sure the same movie is only added once
  # validate title and other content
  # validations 

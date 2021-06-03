@@ -1,6 +1,5 @@
 class UserSerializer 
  def initialize(user_object)
-  byebug
   @user = user_object
  end
 
@@ -10,11 +9,11 @@ class UserSerializer
   # @user.to_json(:only => [:username, :email], :include => {:reading_lists => {:only => [:id, :name, :type], :include => {:reading_list_books => {:include => {:book => {:only => [:title, :author, :published_year, :genre, :description, :pages]}}}}}, :stats => {:only => [:id, :name, :value, :goal, :level]}})
  end
 
- def recent_movies_serialized_json
-   # method to get the last three movies interacted with by user.
-  byebug
-  # user_lists = @user.reading_lists
-  # user_lists.to_json(:only => [:id, :name, :type], :include => {:reading_list_books => {:include => {:book => {:only => [:title, :author, :published_year, :genre, :description, :pages]}}}})
+ def user_movies_serialized_json
+   # method to get the last three movies interacted with by user
+  @user.to_json(only: [:uuid],
+    include: {likes: { include: {movies: {only: [:title, :up_count, :down_count, :query]}}}, dislikes: {include: {only: [:title, :up_count, :down_count, :query]}}}
+  )
  end
 
 

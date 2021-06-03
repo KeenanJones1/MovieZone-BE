@@ -1,13 +1,16 @@
 class UsersController < ApplicationController
  def create
-  byebug
-  render json: UserSerializer.new(user).to_serialized_json
+  user = User.create(user_params)
+  if user 
+   render json: {message: 'complete'}
+  else
+   render json: {status: "error", code: 3000, message: "Can't find User info"}
+  end
  end
 
  def show
   user = User.find_by(uuid: params['id'])
-  byebug 
-  render json: UserSerializer.new(user).recent_movies_serialized_json
+  render json: UserSerializer.new(user).user_movies_serialized_json
  end
 
 

@@ -3,9 +3,10 @@
 #
 # Examples:
 #
- Movie.destroy_all
- User.destroy_all
- Like.destroy_all
+Like.destroy_all
+Dislike.destroy_all
+Movie.destroy_all
+User.destroy_all
  
   movies = Movie.create(title: 'Up', up_count: 54, down_count: 11, query: 'tt1049413')
 

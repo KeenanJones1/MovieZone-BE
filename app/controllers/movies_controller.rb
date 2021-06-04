@@ -2,17 +2,17 @@ class MoviesController < ApplicationController
  def create 
   movie = Movie.find_by(query: params['query'])
   user = User.find_by(uuid: params['uuid'])
-
   if movie && user
    movie.user_movie_check(user, params['thumbs'])
-   render json: {movie: movie}
+   render json: {movie: movie, message: "success"}
   elsif !movie && user
-     movie = Movie.create(query: params['query'], title: params['title'], up_count: 0, down_count: 0)
-     movie.movie_check(params['thumbs'], user)
-     render json: {movie: movie}
+   movie = Movie.new
+   movie.create_and_like(params['title'], params['query'], params['thumbs'], user)
+   render json: {movie: movie, message: "success"}
   else
    render json: {message: 'User not found', code: 404, status: 'error'}
   end
+
  end
 
  def index

@@ -3,14 +3,8 @@ class Movie < ApplicationRecord
  has_many :dislikes
  # before create make sure the same movie is only added once
  # validate title and other content
- # validations 
-
- # creating a movie thumbs fields are default are zero
-
- # updating a the like and dislike count
-
- # keeping track of the users that are making likes and dislike. 
-
+ # validations
+  
  def like_to_dislike(user) 
   like = Like.find_by(user: user, movie: self)
   like.destroy 
@@ -70,9 +64,5 @@ class Movie < ApplicationRecord
      Like.create(movie_id: self.id, user: user)
   end
  end
-
-
-
-
 
 end

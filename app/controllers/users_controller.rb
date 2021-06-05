@@ -14,10 +14,6 @@ class UsersController < ApplicationController
  end
 
 
- def update
-  byebug
- end
-
  private
  def user_params
   params.require(:user).permit(:uuid)

@@ -18,6 +18,7 @@ class MoviesController < ApplicationController
  def index
   results = []
   user = User.find_by(uuid: params['uuid'])
+  if params['queries']
   for ele in params['queries']
    if Movie.find_by(query: ele)
     movie = Movie.find_by(query: ele)
@@ -25,15 +26,12 @@ class MoviesController < ApplicationController
    end
   end
   render json: {movies: results, message: "sucess"}
+ else
+  movies = Movie.all
+  render json: movies
+  end
  end
 
- def show 
-  byebug
- end
-
- def update
-  byebug
- end
 
  private
  def movie_params

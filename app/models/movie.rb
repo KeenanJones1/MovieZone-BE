@@ -9,7 +9,7 @@ class Movie < ApplicationRecord
   like = Like.find_by(user: user, movie: self)
   like.destroy 
   dislike = Dislike.create(user: user, movie: self)
-  if self.up_count >= 0
+  if self.up_count > 0
     self.update( up_count: self.up_count - 1)
   else 
     self.update(up_count: 0)
@@ -21,7 +21,7 @@ class Movie < ApplicationRecord
   dislike = Dislike.find_by(user: user, movie: self)
   dislike.destroy 
   like = Like.create(user: user, movie: self)
-  if self.down_count >= 0 
+  if self.down_count > 0 
     self.update(down_count: self.down_count - 1)
   else
     self.update(down_count: 0)
@@ -42,24 +42,24 @@ class Movie < ApplicationRecord
  def movie_check(thumb, user)
   if thumb == 'up'
    Like.create(movie_id: self.id, user: user)
-    self.up_count += 1
+    self.update(up_count: self.up_count + 1)
   else 
    Dislike.create(movie_id: self.id, user: user)
-   self.down_count += 1
+   self.update(down_count: self.down_count + 1)
   end
  end
 
  def create_and_like(title, query, thumb, user)
-  self.title = title
-  self.query = query
+  self.update(title: title)
+  self.update(query: query)
   if thumb === 'down'
-    self.up_count = 0
-    self.down_count = 1
+    self.update(up_count: 0)
+    self.update(down_count: 1)
     self.save
     Dislike.create(movie_id: self.id, user: user)
   else
-     self.up_count = 1
-     self.down_count = 0
+     self.update(up_count: 1)
+     self.update(down_count: 0)
      self.save
      Like.create(movie_id: self.id, user: user)
   end

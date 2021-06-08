@@ -1,25 +1,50 @@
-# README
+# The Movie Zone (back-end)
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A dynamic movie app that receives data from an external RapidApi and an internal API built with Ruby on Rails and saves to local storage.
 
-Things you may want to cover:
+### Check your Ruby version
 
-* Ruby version
+```shell
+ruby -v
+```
 
-* System dependencies
+The ouput should start with something like `ruby 2.5.1`
 
-* Configuration
+If not, install the right ruby version using [rbenv](https://github.com/rbenv/rbenv) (it could take a while):
 
-* Database creation
+```shell
+ rvm use 2.7.2
+```
 
-* Database initialization
+### Install dependencies
 
-* How to run the test suite
+Using [Bundler](https://github.com/bundler/bundler) and [Yarn](https://github.com/yarnpkg/yarn):
 
-* Services (job queues, cache servers, search engines, etc.)
+```shell
+bundle install
+```
 
-* Deployment instructions
+### Initialize the database
 
-* ...
-# MovieZone-BE
+```shell
+rails db:setup db:migrate db:seed
+```
+
+## Serve
+
+```shell
+rails s -p 3000
+```
+
+# Check if PostgreSQL is installed
+
+postgres -V
+
+- bash: postgres: command not found
+
+# Install PostgreSQL via Homebrew
+
+brew install postgresql
+postgres -V
+
+### postgres (PostgreSQL) 11.3
